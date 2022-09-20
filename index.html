@@ -14,6 +14,9 @@
       <div class="product-image">
         <!-- Votre image -->
         <img v-bind:src="image">
+        <p v-if="inventory > 10">En stock</p>
+        <p v-else-if="inventory <= 10 && inventory > 0">Presque en rupture!</p>
+        <p v-else>En rupture</p>
       </div>
     </div>
 
