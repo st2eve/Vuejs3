@@ -34,4 +34,25 @@ const app = Vue.createApp({
 </div>
 ```
 ## Liaison d'attributs
+### v-bind
 
+```
+<!-- Ajouter une image (main.js) -->
+const app = Vue.createApp({
+    data() {
+        return {
+            product: 'T-Shirt',
+            image: './assets/images/t-shirt-bleu.png'
+        }
+    }
+})
+```
+```
+<!-- Ajouter une image (index.html) -->
+<img v-bind:src="image">
+
+ou
+
+<img :src="image">
+```
+Comment fonctionne exactement la directive v-bind ? Nous utilisons cette directive pour lier dynamiquement un attribut à une expression. Dans ce cas, l’attribut est src et l’expression est ce qui se trouve dans les guillemets de cet attribut : image
