@@ -2,9 +2,9 @@
 
 ## Créer une application Vue (main.js):
 
-const app = Vue.createApp({
+```const app = Vue.createApp({
 
-})
+})```
 
 Exemple :
 
