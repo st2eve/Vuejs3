@@ -98,11 +98,13 @@ const app = Vue.createApp({
 ```
 Puisque notre condition (inventory) est maintenant un nombre entier, nous pouvons utiliser une logique un peu plus complexe dans notre expression. Par exemple :
 ```
+<!-- Logique conditionnelle chaînée (index.html) -->
 <p v-if="inventory > 10">En stock</p>
 <p v-else>En rupture</p>
 ```
 ou pour aller encore plus loin :
 ```
+<!-- Logique conditionnelle chaînée (index.html) -->
 <p v-if="inventory > 10">En stock</p>
 <p v-else-if="inventory <= 10 && inventory > 0">Presque en rupture!</p>
 <p v-else>En rupture</p>
@@ -110,3 +112,38 @@ ou pour aller encore plus loin :
 La directive v-else-if nous donne une couche intermédiaire de logique. Ainsi, dans cet exemple, si le stock est de 8, cette balise p sera rendue.
 
 Bien sûr, si le stock est nul, nous passerons au dernier niveau de v-else et afficherons « En rupture ».
+### v-for
+```
+<!-- Les boucles (main.js) -->
+const app = Vue.createApp({
+    data() {
+        return {
+            ...
+            details: ['60% coton', '30% laine', '10% polyester'] 
+    }
+```
+```
+<!-- Les boucles (index.html) -->
+<ul>
+<li v-for="detail in details">{{ detail }}</li>
+</ul>
+```
+Pour nous familiariser avec le rendu de liste avec v-for, nous allons travailler sur un autre exemple dans notre application. Ajoutons un nouveau tableau de variantes à nos données :
+```
+<!-- Les boucles (main.js) -->
+const app = Vue.createApp({
+    data() {
+        return {
+            ...
+            variants: [
+                { id: 2234, color: 'Bleu' },
+                { id: 2235, color: 'Rouge' }
+            ] 
+    }
+```
+Nous avons maintenant un tableau qui contient un objet pour chaque déclinaison de notre produit. Chaque déclinaison du produit a un id, et une couleur. Ainsi, pour notre prochaine tâche, nous allons afficher chaque couleur de notre déclinaison, et utiliser l’id pour aider Vue à garder la trace des éléments de notre liste.
+```
+<!-- Les boucles (index.html) -->
+<div v-for="variant in variants" :key="variant.id">{{ variant.color }}</div>
+```
+En disant :key="variant.id", nous utilisons l’abréviation de v-bind pour lier l’id de la variante à l’attribut key. Cela donne à chaque élément du DOM une clé unique afin que Vue puisse s’accrocher à l’élément et ne pas en perdre la trace au fil des mises à jour de l’application.
